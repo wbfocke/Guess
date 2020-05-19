@@ -1,0 +1,6 @@
+create table node(node integer primary key, nodeyes references node(node) unique, nodeno references node(node) unique, nodetext)
+insert into node values (null, null, null, 'Is it a vertebrate?')
+insert into node values (null, null, null, 'horse')
+update node set nodeyes = last_insert_rowid() where node = (select node from node order by node asc limit 1)
+insert into node values (null, null, null, 'sea urchin')
+update node set nodeno = last_insert_rowid() where node = (select node from node order by node asc limit 1)
